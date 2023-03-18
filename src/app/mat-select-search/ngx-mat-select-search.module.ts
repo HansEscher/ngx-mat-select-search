@@ -17,8 +17,9 @@ import { CommonModule } from '@angular/common';
 import { MatSelectSearchClearDirective } from './mat-select-search-clear.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectNoEntriesFoundDirective } from './mat-select-no-entries-found.directive';
+import { MatDividerModule } from '@angular/material/divider';
 
-export const MatSelectSearchVersion = '6.0.0';
+export const MatSelectSearchVersion = '6.0.1';
 export { MatSelectSearchClearDirective };
 export { MatSelectNoEntriesFoundDirective };
 
@@ -30,7 +31,8 @@ export { MatSelectNoEntriesFoundDirective };
     MatCheckboxModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDividerModule,
   ],
   declarations: [
     MatSelectSearchComponent,

@@ -1,11 +1,19 @@
 # Changelog
 
+## 6.0.1
+Take the situation before 7.0.0
+Keep angulars MatLegacySelectModule (and other legacy)
+In order to support APPs that use that to keep 'standard' style for now.
+Only Angular 17 will remove legacy. 
+In 16 it is only deprecated.
+At least I hope to make it work.
+
 ## 6.0.0
 * Add Angular Material 15 as a peer dependency \
   [#408](https://github.com/bithost-gmbh/ngx-mat-select-search/issues/408)
 * Update compatibility to `@angular/material@15` with `MatLegacySelectModule` (`@angular/material/legacy-select`).
   [#395](https://github.com/bithost-gmbh/ngx-mat-select-search/issues/395)
-
+  
   **Breaking Change**:  `@angular/material`: `<= 14` is not supported anymore, please use version `5.0.0`.
                         See [README.md#compatibility](README.md#compatibility)
 
