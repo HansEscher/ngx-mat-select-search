@@ -1,5 +1,18 @@
 # Changelog
 
+## 6.0.2 
+Hopefully all of ngx-mat-select-search
+except for the drop of Legacy
+
+## cherry picked 7.0.2
+* Fix compatibility with `@angular/material`: `^16.0.0`
+  [#425](https://github.com/bithost-gmbh/ngx-mat-select-search/issues/425)
+
+  Thanks to @GipHub123 for reporting
+
+## cherry picked 7.0.1
+* Enhancement: Add compatibility with `@angular/material`: `^16.0.0`
+
 ## 6.0.1
 Take the situation before 7.0.0
 Keep angulars MatLegacySelectModule (and other legacy)
@@ -11,6 +24,11 @@ At least I hope to make it work.
 ## 6.0.0
 * Add Angular Material 15 as a peer dependency \
   [#408](https://github.com/bithost-gmbh/ngx-mat-select-search/issues/408)
+  
+  Thanks to @swierzbicki
+* Fix select all example [#336](https://github.com/bithost-gmbh/ngx-mat-select-search/issues/336)
+
+  Thanks to @AhsanAyaz
 * Update compatibility to `@angular/material@15` with `MatLegacySelectModule` (`@angular/material/legacy-select`).
   [#395](https://github.com/bithost-gmbh/ngx-mat-select-search/issues/395)
   
