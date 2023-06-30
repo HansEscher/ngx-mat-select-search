@@ -215,6 +215,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
   }
   private _lastExternalInputValue: string | undefined;
 
+  // eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-empty-function
   onTouched: Function = (_: any) => { };
 
   /** Reference to the MatSelect options */
@@ -276,6 +277,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
       return;
     }
     for (const key of configurableDefaultOptions) {
+      // eslint-disable-next-line no-prototype-builtins
       if (defaultOptions.hasOwnProperty(key)) {
         (this[key] as any) = defaultOptions[key];
       }
@@ -487,6 +489,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
     ).subscribe(fn);
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   registerOnTouched(fn: Function) {
     this.onTouched = fn;
   }
@@ -556,6 +559,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
 
             this.previousSelectedValues.forEach(previousValue => {
 
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               if (!values.some((v: any) => this.matSelect.compareWith(v, previousValue))
                 && !optionValues.some(v => this.matSelect.compareWith(v, previousValue))) {
 
@@ -585,7 +589,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
     }
     let element: HTMLElement | null = this.innerSelectSearch.nativeElement;
     let panelElement: HTMLElement | undefined;
-    while (element = element?.parentElement ?? null) {
+    while ((element = element?.parentElement ?? null) !== null) {
       if (element.classList.contains('mat-select-panel')) {
         panelElement = element;
         break;
