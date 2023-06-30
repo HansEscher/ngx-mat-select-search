@@ -13,7 +13,7 @@
     "lint": "tslint --project src/tsconfig.app.json",
     "build-lib": "ng-packagr -p ng-package.json"
   },
-  "author": "Esteban Gehring, Bithost GmbH",
+  "author": "Esteban Gehring, Bithost GmbH; updated for angular-16-material-16-legacy-controls by Hans Escher",
   "bugs": {
     "url": "https://github.com/bithost-gmbh/ngx-mat-select-search/issues"
   },

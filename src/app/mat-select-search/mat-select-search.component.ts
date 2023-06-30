@@ -218,7 +218,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
   onTouched: Function = (_: any) => { };
 
   /** Reference to the MatSelect options */
-  public set _options(_options: QueryList<MatOption>) {
+  public set _options(_options: QueryList<MatOption> | null) {
     this._options$.next(_options);
   }
   public get _options(): QueryList<MatOption> | null {
