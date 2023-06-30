@@ -46,7 +46,7 @@ found in the LICENSE file at https://angular.io/license
           class="mat-select-search-clear">
     <ng-content *ngIf="clearIcon; else defaultIcon" select="[ngxMatSelectSearchClear]"></ng-content>
     <ng-template #defaultIcon>
-      <mat-icon [svgIcon]="closeSvgIcon">
+      <mat-icon [svgIcon]="closeSvgIcon ?? ''">
         {{!closeSvgIcon ? closeIcon : null}}
       </mat-icon>
     </ng-template>
@@ -63,4 +63,3 @@ found in the LICENSE file at https://angular.io/license
               select="[ngxMatSelectNoEntriesFound]"></ng-content>
   <ng-template #defaultNoEntriesFound>{{noEntriesFoundLabel}}</ng-template>
 </div>
-

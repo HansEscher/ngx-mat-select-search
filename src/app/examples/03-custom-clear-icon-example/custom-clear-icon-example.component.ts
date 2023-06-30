@@ -12,15 +12,15 @@ export class CustomClearIconExampleComponent extends SingleSelectionExampleCompo
 
   // reuse all code of SingleSelectionComponent
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
   }
 
-  ngAfterViewInit() {
+  override ngAfterViewInit() {
     super.ngAfterViewInit();
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     super.ngOnDestroy();
   }
 

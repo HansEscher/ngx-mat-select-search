@@ -9,6 +9,10 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "target": "ES2022",
+    "strict": true,
+    "noImplicitOverride": true,
+    "allowJs": true,
+    "esModuleInterop": true,
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -16,6 +20,14 @@
       "es2017",
       "dom"
     ],
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "useDefineForClassFields": false
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
   }
 }

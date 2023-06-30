@@ -17,17 +17,17 @@ export class TooltipSelectAllExampleComponent implements OnInit, AfterViewInit, 
   protected banks: Bank[] = BANKS;
 
   /** control for the selected bank for multi-selection */
-  public bankMultiCtrl: FormControl<Bank[]> = new FormControl<Bank[]>([]);
+  public bankMultiCtrl: FormControl<Bank[]> = new FormControl<Bank[]>([], {nonNullable:true});
 
   /** control for the MatSelect filter keyword multi-selection */
-  public bankMultiFilterCtrl: FormControl<string> = new FormControl<string>('');
+  public bankMultiFilterCtrl: FormControl<string> = new FormControl<string>('', {nonNullable:true});
 
   /** list of banks filtered by search keyword */
   public filteredBanksMulti: ReplaySubject<Bank[]> = new ReplaySubject<Bank[]>(1);
 
   public tooltipMessage = 'Select All / Unselect All';
 
-  @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
+  @ViewChild('multiSelect', { static: true }) multiSelect!: MatSelect;
 
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
