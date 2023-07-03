@@ -4,7 +4,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 import { A, DOWN_ARROW, END, ENTER, ESCAPE, HOME, NINE, SPACE, UP_ARROW, Z, ZERO } from '@angular/cdk/keycodes';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import {
@@ -22,12 +21,18 @@ import {
   Optional,
   Output,
   QueryList,
-  ViewChild
+  ViewChild,
+  Host,
+  SkipSelf
 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MatOption } from '@angular/material/core';
-import { MatFormField } from '@angular/material/form-field';
-import { MatSelect } from '@angular/material/select';
+import { MatLegacyOption } from '@angular/material/legacy-core';
+
+
+// import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacyFormField as MatFormField } from '@angular/material/legacy-form-field';
+import { MatLegacySelect  } from '@angular/material/legacy-select';
+
 import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
 import { delay, filter, map, startWith, switchMap, take, takeUntil, tap } from 'rxjs/operators';
 import { MatSelectSearchClearDirective } from './mat-select-search-clear.directive';
@@ -36,7 +41,7 @@ import { MatSelectNoEntriesFoundDirective } from './mat-select-no-entries-found.
 
 /* tslint:disable:member-ordering component-selector */
 /**
- * Component providing an input field for searching MatSelect options.
+ * Component providing an input field for searching MatLegacySelect options.
  *
  * Example usage:
  *
@@ -64,7 +69,7 @@ import { MatSelectNoEntriesFoundDirective } from './mat-select-no-entries-found.
  *
  *   // control for the selected bank
  *   public bankCtrl: FormControl = new FormControl();
- *   // control for the MatSelect filter keyword
+ *   // control for the MatLegacySelect filter keyword
  *   public bankFilterCtrl: FormControl = new FormControl();
  *
  *   // list of banks
@@ -218,20 +223,20 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
   // eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-empty-function
   onTouched: Function = (_: any) => { };
 
-  /** Reference to the MatSelect options */
-  public set _options(_options: QueryList<MatOption> | null) {
+  /** Reference to the MatLegacySelect options */
+  public set _options(_options: QueryList<MatLegacyOption> | null) {
     this._options$.next(_options);
   }
-  public get _options(): QueryList<MatOption> | null {
+  public get _options(): QueryList<MatLegacyOption> | null {
     return this._options$.getValue();
   }
-  public _options$: BehaviorSubject<QueryList<MatOption>|null> = new BehaviorSubject<QueryList<MatOption>|null>(null);
+  public _options$: BehaviorSubject<QueryList<MatLegacyOption>|null> = new BehaviorSubject<QueryList<MatLegacyOption>|null>(null);
 
-  private optionsList$: Observable<MatOption[]> = this._options$.pipe(
+  private optionsList$: Observable<MatLegacyOption[]> = this._options$.pipe(
     switchMap(_options => _options ?
       _options.changes.pipe(
         map(options => options.toArray()),
-        startWith<MatOption[]>(_options.toArray()),
+        startWith<MatLegacyOption[]>(_options.toArray()),
       ) : of([])
     )
   );
@@ -261,11 +266,13 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
 
   /** Reference to active descendant for ARIA Support. */
   private activeDescendant!: HTMLElement;
+  // private hostElement: Element,
 
-  constructor(@Inject(MatSelect) public matSelect: MatSelect,
+  constructor(
+    @Inject(MatLegacySelect) public matSelect: MatLegacySelect,
+    @Optional() @SkipSelf() @Host() private matOption: MatLegacyOption,
     public changeDetectorRef: ChangeDetectorRef,
     private _viewportRuler: ViewportRuler,
-    @Optional() @Inject(MatOption) public matOption: MatOption | null= null,
     @Optional() @Inject(MatFormField) public matFormField: MatFormField | null = null,
     @Optional() @Inject(MAT_SELECTSEARCH_DEFAULT_OPTIONS) defaultOptions?: MatSelectSearchOptions
   ) {
@@ -314,8 +321,6 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
           }
         }
       });
-
-
 
     // set the first item active after the options changed
     this.matSelect.openedChange
@@ -421,11 +426,11 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
   }
 
   _isToggleAllCheckboxVisible(): boolean {
-    return this.matSelect.multiple && this.showToggleAllCheckbox;
+    return (this.matSelect?.multiple) && this.showToggleAllCheckbox;
   }
 
   /**
-   * Handles the key down event with MatSelect.
+   * Handles the key down event with MatLegacySelect.
    * Allows e.g. selecting with enter key, navigation with arrow keys, etc.
    * @param event
    */
@@ -440,7 +445,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
       event.stopPropagation();
     }
 
-    if (this.matSelect.multiple && event.key && event.keyCode === ENTER) {
+    if ((this.matSelect?.multiple) && event.key && event.keyCode === ENTER) {
       // Regain focus after multiselect, so we can further type
       setTimeout(() => this._focus());
     }
@@ -453,14 +458,14 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
   }
 
   /**
-   * Handles the key up event with MatSelect.
+   * Handles the key up event with MatLegacySelect.
    * Allows e.g. the announcing of the currently activeDescendant by screen readers.
    */
   _handleKeyup(event: KeyboardEvent) {
     if (event.keyCode === UP_ARROW || event.keyCode === DOWN_ARROW) {
       const ariaActiveDescendantId = this.matSelect._getAriaActiveDescendant();
       const optionArray = this._options?.toArray() ?? [];
-      const index = optionArray.findIndex(item => item.id === ariaActiveDescendantId);
+      const index = optionArray.findIndex(item => item && item['id'] && item['id'] === ariaActiveDescendantId);
       if (index !== -1) {
         this.unselectActiveDescendant();
         this.activeDescendant = optionArray[index]._getHostElement();
@@ -530,8 +535,8 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
    */
   private initMultipleHandling() {
     if (this.matSelect.ngControl === null) {
-      if (this.matSelect.multiple) {
-        // note: the access to matSelect.ngControl (instead of matSelect.value / matSelect.valueChanges)
+      if (this.matSelect?.multiple) {
+        // note: the access to MatLegacySelect.ngControl (instead of MatLegacySelect.value / MatLegacySelect.valueChanges)
         // is necessary to properly work in multi-selection mode.
         console.error('the mat-select containing ngx-mat-select-search must have a ngModel or formControl directive when multiple=true');
       }
@@ -549,7 +554,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
       .pipe(takeUntil(this._onDestroy))
       .subscribe((values) => {
         let restoreSelectedValues = false;
-        if (this.matSelect.multiple) {
+        if (this.matSelect?.multiple) {
           if ((this.alwaysRestoreSelectedOptionsMulti || (this._formControl.value && this._formControl.value.length))
             && this.previousSelectedValues && Array.isArray(this.previousSelectedValues)) {
             if (!values || !Array.isArray(values)) {
@@ -601,7 +606,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
   }
 
   /**
-   * Determine the offset to length that can be caused by the optional matOption used as a search input.
+   * Determine the offset to length that can be caused by the optional MatLegacyOption used as a search input.
    */
   private getOptionsLengthOffset(): number {
     if (this.matOption) {

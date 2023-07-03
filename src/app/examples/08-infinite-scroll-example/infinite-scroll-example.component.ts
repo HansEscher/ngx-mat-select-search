@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { combineLatest, merge, Observable, Subject } from 'rxjs';
-import { map, mapTo, scan, startWith } from 'rxjs/operators';
+import { map, mapTo, scan, startWith, takeUntil } from 'rxjs/operators';
 import { MatSelect } from '@angular/material/select';
 import { Bank } from '../demo-data';
 
@@ -17,6 +17,9 @@ export class InfiniteScrollExampleComponent implements OnInit, OnDestroy {
 
   @ViewChild('matSelectInfiniteScroll', { static: true } )
   infiniteScrollSelect!: MatSelect;
+
+  /** control for the MatSelect filter keyword */
+  public searchCtrl: FormControl<string> = new FormControl<string>('', {nonNullable: true});
 
   /** list with all available data, mocks some sort of backend data source */
   private mockBankList: Bank[] = Array.from({ length: 1000 }).map((_, i) => ({
@@ -93,15 +96,16 @@ export class InfiniteScrollExampleComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() { }
 
   ngOnInit() {
-    /*this.infiniteScrollSelect.openedChange.pipe(takeUntil(this.destroy$)).subscribe(opened => {
+    this.infiniteScrollSelect.openedChange.pipe(takeUntil(this.destroy$)).subscribe(opened => {
       // after opening, reset the batch offset
       if (opened) {
         this.resetBatchOffset$.next();
       }
-    });*/
+    });
   }
 
   ngOnDestroy() {

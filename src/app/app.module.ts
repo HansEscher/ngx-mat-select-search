@@ -3,12 +3,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacySelectModule } from '@angular/material/legacy-select';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
 
 import { NgxMatSelectSearchModule } from './mat-select-search/ngx-mat-select-search.module';
 
@@ -25,32 +24,47 @@ import { TooltipSelectAllExampleComponent } from './examples/07-tooltip-select-a
 import { InfiniteScrollExampleComponent } from './examples/08-infinite-scroll-example/infinite-scroll-example.component';
 import { CustomNoEntriesFoundExampleComponent } from './examples/09-custom-no-entries-found-example/custom-no-entries-found-example.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectSearchTestComponent } from './mat-select-search/mat-select-search-test.component';
 
 
-/**
- * NgModule that includes all Material modules that are required to serve the app.
- */
-@NgModule({
-  exports: [
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatSelectModule,
-    MatToolbarModule
-  ]
-})
-export class MaterialModule {}
+// /**
+//  * NgModule that includes all Material modules that are required to serve the app.
+//  */
+// @NgModule({
+//   imports: [
+//     // also import, so the tests work
+//     MatButtonModule,
+//     MatFormFieldModule,
+//     MatIconModule,
+//     MatSelectModule,
+//     MatToolbarModule
+//   ]
+// })
+// export class MaterialModule {}
 
 @NgModule({
   imports: [
     BrowserModule,
     CommonModule,
-    MaterialModule,
+    // MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxMatSelectSearchModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    // keeping it simpler with one module less,
+    MatLegacyButtonModule,
+    MatLegacyFormFieldModule,
+    MatIconModule,
+    MatLegacySelectModule,
+    MatToolbarModule
+  ],
+  exports: [
+    MatLegacyButtonModule,
+    MatLegacyFormFieldModule,
+    MatIconModule,
+    MatLegacySelectModule,
+    MatToolbarModule
   ],
   declarations: [
     AppComponent,
@@ -62,7 +76,8 @@ export class MaterialModule {}
     ServerSideSearchExampleComponent,
     MultipleSelectionSelectAllExampleComponent,
     TooltipSelectAllExampleComponent,
-    InfiniteScrollExampleComponent
+    InfiniteScrollExampleComponent,
+    MatSelectSearchTestComponent
   ],
   bootstrap: [AppComponent],
   providers: []
