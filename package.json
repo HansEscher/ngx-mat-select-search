@@ -1,7 +1,7 @@
 {
   "name": "ngx-mat-select-search",
   "description": "Angular component providing an input field for searching / filtering MatSelect options of the Angular Material library.",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -15,11 +15,11 @@
   },
   "author": "Esteban Gehring, Bithost GmbH; updated for angular-16-material-16-legacy-controls by Hans Escher",
   "bugs": {
-    "url": "https://github.com/bithost-gmbh/ngx-mat-select-search/issues"
+    "url": "https://github.com/HansEscher/ngx-mat-select-search/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bithost-gmbh/ngx-mat-select-search.git"
+    "url": "https://github.com/HansEscher/ngx-mat-select-search.git"
   },
   "keywords": [
     "angular",
@@ -30,7 +30,7 @@
     "search",
     "filter"
   ],
-  "homepage": "https://github.com/bithost-gmbh/ngx-mat-select-search",
+  "homepage": "https://github.com/HansEscher/ngx-mat-select-search",
   "peerDependencies": {
     "@angular/material": "^16.1.3"
   },
