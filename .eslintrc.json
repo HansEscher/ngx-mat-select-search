@@ -27,7 +27,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "ngx-mat",
+            "prefix": ["ngx-mat", "app"],
             "style": "kebab-case"
           }
         ]

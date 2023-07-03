@@ -529,7 +529,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
    * Note: to improve this code, mat-select should be extended to allow disabling resetting the selection while filtering.
    */
   private initMultipleHandling() {
-    if (this.matSelect === null || this.matSelect.ngControl === null) {
+    if (this.matSelect.ngControl === null) {
       if (this.matSelect.multiple) {
         // note: the access to matSelect.ngControl (instead of matSelect.value / matSelect.valueChanges)
         // is necessary to properly work in multi-selection mode.
