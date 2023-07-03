@@ -536,7 +536,7 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, ControlValue
         console.error('the mat-select containing ngx-mat-select-search must have a ngModel or formControl directive when multiple=true');
       }
       return;
-    };
+    }
     const valueChanges = this.matSelect.ngControl.valueChanges;
     if (valueChanges === null) return;
 
