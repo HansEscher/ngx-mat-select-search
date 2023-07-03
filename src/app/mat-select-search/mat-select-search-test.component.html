@@ -1,0 +1,54 @@
+<h3>Single selection</h3>
+<p>
+  <mat-form-field>
+    <mat-select [formControl]="bankCtrl" placeholder="Bank" #selectSingle>
+      <mat-option>
+        <ngx-mat-select-search [formControl]="bankFilterCtrl" #selectSearchSingle></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+        {{bank.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+<p>
+  Selected Bank: {{bankCtrl.value?.name}}
+</p>
+
+<h3>Single selection inside mat-option</h3>
+<p>
+  <mat-form-field>
+    <mat-select [formControl]="bankCtrlMatOption" placeholder="Bank" #selectSingleMatOption>
+      <mat-option>
+        <ngx-mat-select-search [formControl]="bankFilterCtrlMatOption"
+                               #selectSearchSingleMatOption></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let bank of filteredBanksMatOption | async" [value]="bank">
+        {{bank.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+<p>
+  Selected Bank: {{bankCtrlMatOption.value?.name}}
+</p>
+
+<h3>Multiple selection</h3>
+<p>
+  <mat-form-field>
+    <mat-select [formControl]="bankMultiCtrl" placeholder="Banks" [multiple]="true" #selectMulti>
+      <mat-option>
+        <ngx-mat-select-search [formControl]="bankMultiFilterCtrl" #selectSearchMulti></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let bank of filteredBanksMulti | async" [value]="bank">
+        {{bank.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+<p>
+  Selected Banks:
+</p>
+<ul *ngFor="let bank of bankMultiCtrl?.value">
+  <li>{{bank.name}}</li>
+</ul>
