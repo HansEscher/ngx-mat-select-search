@@ -2963,7 +2963,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const MatSelectSearchVersion = '6.0.7';
+const MatSelectSearchVersion = '6.0.8';
 
 
 class NgxMatSelectSearchModule {
