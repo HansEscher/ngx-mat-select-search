@@ -1,5 +1,7 @@
 # Changelog
 
+## 6.0.6 include dist in repo
+
 ## 6.0.5
 Make test work. should the <mat-option> parent be mandatory or not?
 
