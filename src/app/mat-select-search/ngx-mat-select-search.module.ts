@@ -7,12 +7,12 @@
 
 import { NgModule } from '@angular/core';
 import { MatSelectSearchComponent } from './mat-select-search.component';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
+import { MatLegacyButtonModule  } from '@angular/material/legacy-button';
+import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
-import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
 import { MatLegacySelectModule } from '@angular/material/legacy-select';
-import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 
 import { MatSelectSearchClearDirective } from './mat-select-search-clear.directive';
@@ -26,13 +26,13 @@ export { MatSelectNoEntriesFoundDirective };
 
 @NgModule({
   imports: [
-    CommonModule,
+    BrowserModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatCheckboxModule,
+    MatLegacyButtonModule ,
+    MatLegacyCheckboxModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatTooltipModule,
+    MatLegacyTooltipModule,
     MatLegacySelectModule,
     MatDividerModule,
   ],
