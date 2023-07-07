@@ -1,5 +1,7 @@
 # Changelog
 
+## 6.0.7 add prepare script
+
 ## 6.0.6 include dist in repo
 
 ## 6.0.5
