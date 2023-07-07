@@ -27,32 +27,16 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectSearchTestComponent } from './mat-select-search/mat-select-search-test.component';
 
 
-// /**
-//  * NgModule that includes all Material modules that are required to serve the app.
-//  */
-// @NgModule({
-//   imports: [
-//     // also import, so the tests work
-//     MatButtonModule,
-//     MatFormFieldModule,
-//     MatIconModule,
-//     MatSelectModule,
-//     MatToolbarModule
-//   ]
-// })
-// export class MaterialModule {}
-
 @NgModule({
   imports: [
     BrowserModule,
     CommonModule,
-    // MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxMatSelectSearchModule,
     MatSlideToggleModule,
-    // keeping it simpler with one module less,
+    // keeping it simpler with one module (MaterialModule) less,
     MatLegacyButtonModule,
     MatLegacyFormFieldModule,
     MatIconModule,
